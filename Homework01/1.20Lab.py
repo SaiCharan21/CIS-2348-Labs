@@ -8,6 +8,7 @@ print(integer, "squared is", integerS)
 integerC = integer * integer * integer
 print("And", integer, "cubed is", integerC, "!!")
 
+
 integer2 = int(input("Enter another integer:\n"))
 total = integer + integer2
 prod = integer * integer2
