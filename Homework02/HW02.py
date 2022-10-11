@@ -1,3 +1,6 @@
+# Sai Charan Todupunoori
+# PSID: 2048092
+
 import datetime
 
 inputDates = open('inputDates.txt', 'r')
@@ -14,23 +17,23 @@ for line in inputDates:
 
     if comma_index > 0:
         year = line[comma_index + 1:].strip()
-        # print(year)
+        print(year)
         date = line[:comma_index]
-        # print(date)
+        print(date)
         month = line[:date.find(" ")].strip().lower()
-        # print(month)
+        print(month)
         day = date[date.find(" "):].strip()
-        # print(day)
+        print(day)
 
         month_val = months[month]
-        # print(month_val)
+        print(month_val)
 
         # converts basic date format to military time format to compare to current date in datetime library usage
         obj = datetime.datetime.strptime(str(month_val) + "/" + str(day) + "/" + str(year), '%m/%d/%Y')
         new_date = obj.date()
-        # print(obj)
+        print(obj)
 
-        # creates the modified date format that is to be printed in the new txt file as output based on the dates passed as input
+        # creates the modified date format that is to be printed in the new txt file as output from input dates
         formatted_date = str(month_val) + "/" + str(day) + "/" + str(year)
         print(formatted_date)
 

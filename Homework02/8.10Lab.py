@@ -1,3 +1,6 @@
+# Sai Charan Todupunoori
+# PSID: 2048092
+
 string = input()
 new_str = string.replace(" ", "")
 

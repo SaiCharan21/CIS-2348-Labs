@@ -1,3 +1,6 @@
+# Sai Charan Todupunoori
+# PSID: 2048092
+
 pwd_str = input()
 new_pwd = ""
 for i in pwd_str:
@@ -13,4 +16,4 @@ for i in pwd_str:
         new_pwd = new_pwd + "."
     else:
         new_pwd = new_pwd + i
-print(new_pwd+"q*s")
+print(new_pwd + "q*s")
