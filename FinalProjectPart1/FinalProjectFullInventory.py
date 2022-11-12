@@ -31,25 +31,18 @@ def FI():
     with open('FullInventory.csv', mode='w', newline='') as FullInventory_file:
         data = csv.writer(FullInventory_file, delimiter=',')
         for (itemID, manufacturer_name, item_type, indicator) in records1:
-            # looping through records1  for itemID, manufacturer_name, item_type, damaged or not damaged condition
             for (service_itemID, service_date) in records2:
-                # looping through records2  for service_itemID, service_date
                 if itemID == service_itemID:
-                    # matching the item id from full inventory file to service dates list file
                     for (price_itemID, item_price) in records3:
-                        # looping through records3  for price_itemID, item_price
                         if itemID == price_itemID:
-                            # matching the item id from full inventory file to prices list file
                             data.writerow(
-                                [itemID, manufacturer_name, item_type, indicator.strip(), service_date.strip(),
-                                 item_price.strip()])
+                                [itemID, manufacturer_name, item_type, item_price.strip(), service_date.strip(),
+                                 indicator.strip()])
 
 
-# sorting function taking in manufacturers list element: manufacturer name
 def sort_key(records1):
     return records1[1]
 
 
-# calling the function FI()
 if __name__ == '__main__':
     FI()

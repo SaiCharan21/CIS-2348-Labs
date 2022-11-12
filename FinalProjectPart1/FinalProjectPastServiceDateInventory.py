@@ -51,8 +51,8 @@ def PSD():
                 # contents of each list(records1,records2,records3) are being accessed based on their row index
                 data.writerow([service_itemID, records1[manu_id_col.index(service_itemID)][1],
                                records1[manu_id_col.index(service_itemID)][2],
-                               records1[manu_id_col.index(service_itemID)][3].strip(), service_date.strip(),
-                               records3[price_id_col.index(service_itemID)][1].strip()])
+                               records3[price_id_col.index(service_itemID)][1].strip(), service_date.strip(),
+                               records1[manu_id_col.index(service_itemID)][3].strip()])
 
 
 if __name__ == '__main__':

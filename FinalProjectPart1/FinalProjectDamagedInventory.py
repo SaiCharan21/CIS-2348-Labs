@@ -34,12 +34,11 @@ def DI():
         data = csv.writer(DamagedInventory_file, delimiter=',')
         for (itemID, manufacturer_name, item_type, indicator) in records1:
             # looping through records1  for itemID, manufacturer_name, item_type, damaged or not damaged condition
+            # checking if item is damaged
             if indicator.strip():
-                # checking if item is damaged
                 # writing to new csv file taking the data of each list
-                data.writerow([itemID, manufacturer_name, item_type, indicator.strip(),
-                               records2[service_id_col.index(itemID)][1].strip(),
-                               records3[price_id_col.index(itemID)][1].strip()])
+                data.writerow([itemID, manufacturer_name, item_type, records3[price_id_col.index(itemID)][1].strip(),
+                               records2[service_id_col.index(itemID)][1].strip()])
 
 
 # sorting function taking in manufacturers list element: manufacturer name
