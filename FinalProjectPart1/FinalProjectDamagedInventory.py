@@ -17,7 +17,8 @@ def DI():
     service_id_col = []
     with open('ServiceDatesList.csv', 'r') as service_file:
         for line in service_file:
-            service_id_col.append(line.split(',')[0])
+            service_id_col.append(
+                line.split(',')[0])  # grabbing ID reference to be used later in the writing to file function
             records2.append(line.split(','))
 
     # reading and adding each line/row in to the list records3
@@ -25,7 +26,8 @@ def DI():
     price_id_col = []
     with open('PriceList.csv', 'r') as price_file:
         for line in price_file:
-            price_id_col.append(line.split(',')[0])
+            price_id_col.append(
+                line.split(',')[0])  # grabbing ID reference to be used later in the writing to file function
             records3.append(line.split(','))
     records3.sort(key=sort_key, reverse=True)
 
@@ -43,6 +45,7 @@ def DI():
 
 # sorting function taking in manufacturers list element: manufacturer name
 def sort_key(records3):
+    print(records3[1])
     return records3[1]
 
 

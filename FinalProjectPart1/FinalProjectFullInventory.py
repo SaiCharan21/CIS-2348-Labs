@@ -33,11 +33,13 @@ def FI():
         for (itemID, manufacturer_name, item_type, indicator) in records1:
             for (service_itemID, service_date) in records2:
                 if itemID == service_itemID:
+                    # matching service data to item id
                     for (price_itemID, item_price) in records3:
                         if itemID == price_itemID:
+                            # matching price data to item id
                             data.writerow(
                                 [itemID, manufacturer_name, item_type, item_price.strip(), service_date.strip(),
-                                 indicator.strip()])
+                                 indicator.strip()])  # writing data row
 
 
 def sort_key(records1):

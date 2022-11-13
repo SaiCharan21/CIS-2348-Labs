@@ -4,66 +4,49 @@
 import csv
 
 
-# start of full_inventory function
-def FI():
-    # reading and adding each line/row in to the list records1
+def ITL():
     records1 = []
-    all_types = []
-    # this line is to assosciate each ID with each item in the manufacturer's list
-    manu_id_col = []
+    records2 = []
+    records3 = []
+
     with open('ManufacturerList.csv', 'r') as manuf_file:
         for line in manuf_file:
-            manu_id_col.append(
-                line.split(',')[0])  # grabbing individual data to be used later in the writing to file function
-
-            types = line.split(',')[2]
-            all_types.append(str(types))
-
             records1.append(line.split(','))
-        print(all_types)
+    records1.sort(key=sort_key)
 
-    # sorting in alphabetical order
-    records1.sort(key=sort_id)
-
-    # reading and adding each line/row in to the list records2
-    records2 = []
-    service_id_col = []
-    with open('ServiceDatesList.csv', 'r') as service_file:
-        for line in service_file:
-            service_id_col.append(line.split(',')[0])
+    with open('ServiceDatesList.csv', 'r') as f:
+        for line in f:
             records2.append(line.split(','))
 
-    # reading and adding each line/row in to the list records3
-    records3 = []
-    price_id_col = []
-    with open('PriceList.csv', 'r') as price_file:
-        for line in price_file:
-            price_id_col.append(line.split(',')[0])
+    with open('PriceList.csv', 'r') as f:
+        for line in f:
             records3.append(line.split(','))
 
-        # opening and creating the file
-    for (service_itemID, service_date) in records2:
-        typeName = records1[manu_id_col.index(service_itemID)][2].capitalize()
-        for item in all_types:
-            file = open(typeName + "Inventory.csv", "w")
+    dict1 = {}
+    for (itemID, manufacturer_name, item_type, indicator) in records1:
+        for (service_itemID, service_date) in records2:
+            if itemID == service_itemID:
+                for (price_itemID, item_price) in records3:
+                    if itemID == price_itemID and item_type in dict1.keys():
+                        dict1[item_type].append([itemID, manufacturer_name, item_price.strip(),
+                                                 service_date.strip(),
+                                                 indicator.strip()])
+                    elif itemID == price_itemID and item_type not in dict1.keys():
+                        dict1[item_type] = list([[itemID, manufacturer_name, item_price.strip(),
+                                                  service_date.strip(),
+                                                  indicator.strip()]])
 
-            new_data = csv.writer(file, delimiter=',')
-            if typeName == item:
-                new_data.writerow([service_itemID, records1[manu_id_col.index(service_itemID)][1],
-                                   records1[manu_id_col.index(service_itemID)][2],
-                                   records3[price_id_col.index(service_itemID)][1].strip(), service_date.strip(),
-                                   records1[manu_id_col.index(service_itemID)][3].strip()])
+    for item_type in dict1:
+        with open(item_type.capitalize() + 'Inventory.csv', mode='w', newline='') as item_type_file:
+            data = csv.writer(item_type_file, delimiter=',')
+            for item_data_list in dict1[item_type]:
+                data.writerow(item_data_list)
 
 
-# sorting function taking in manufacturers list element: manufacturer name
 def sort_key(records1):
-    return records1[1]
-
-
-def sort_id(records1):
     return records1[0]
 
 
 # calling the function FI()
 if __name__ == '__main__':
-    FI()
+    ITL()

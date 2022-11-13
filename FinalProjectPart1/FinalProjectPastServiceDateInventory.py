@@ -13,7 +13,7 @@ def PSD():
     with open('ManufacturerList.csv', 'r') as manuf_file:
         for line in manuf_file:
             manu_id_col.append(
-                line.split(',')[0])  # grabbing individual data to be used later in the writing to file function
+                line.split(',')[0])  # grabbing ID reference to be used later in the writing to file function
             records1.append(line.split(','))
 
     # reading and adding each line/row in to the list records2
@@ -25,7 +25,8 @@ def PSD():
             if (records2 == []) or (datetime.strptime(line.split(',')[1].strip(), "%m/%d/%Y") < datetime.strptime(
                     records2[len(records2) - 1][1].strip(), "%m/%d/%Y")):
                 # adding the items that are past the service date on the day the program is actually executed
-                records2.insert(index_pos, line.split(','))
+                records2.insert(index_pos, line.split(
+                    ','))  # grabbing ID reference to be used later in the writing to file function
             else:
                 records2.insert(len(records2) + 1, line.split(','))
 
@@ -36,7 +37,7 @@ def PSD():
     with open('PriceList.csv', 'r') as price_file:
         for line in price_file:
             price_id_col.append(
-                line.split(',')[0])
+                line.split(',')[0])  # grabbing ID reference to be used later in the writing to file function
             records3.append(line.split(','))
 
     # opening and creating the file
