@@ -31,10 +31,13 @@ def FI():
     with open('FullInventory.csv', mode='w', newline='') as FullInventory_file:
         data = csv.writer(FullInventory_file, delimiter=',')
         for (itemID, manufacturer_name, item_type, indicator) in records1:
+            # gathering data from manufacturer's file
             for (service_itemID, service_date) in records2:
+                # gathering data from service dates list file
                 if itemID == service_itemID:
                     # matching service data to item id
                     for (price_itemID, item_price) in records3:
+                        # gathering data from prices list file
                         if itemID == price_itemID:
                             # matching price data to item id
                             data.writerow(
